@@ -1,56 +1,7 @@
-var products = [
-    {
-        id: 0,
-        title: "The Lost Hero",
-        author: "Rick Riordan",
-        price: 7840,
-        img: "The_Lost_Hero.jpg"
-    },
-    
-    {
-        id: 1,
-        title: "Mistborn Trilogy",
-        author: "Brandon Sanderson",
-        price: 5080,
-        img: "Mistborn_Trilogy.jpg"
-    },
-    
-    {
-        id: 2,
-        title: "Harry Dresden Files",
-        author: "Jim Butcher",
-        price: 4700,
-        img: "Storm_Front.jpg"
-    },
-    
-    {
-        id: 3,
-        title: "Inkheart Trilogy",
-        author: "Cornelia Funke",
-        price: 5000,
-        img: "Inkheart.jpg"
-    },
-    
-    {
-        id: 4,
-        title: "Six of Crows",
-        author: "Leigh Bardugo",
-        price: 6000,
-        img: "Six_of_Crows.jpg"
-    },
-    
-    {
-        id: 5,
-        title: "The Raven Cycle",
-        author: "Maggie Stiefvater",
-        price: 6000,
-        img: "The_Raven_Cycle.jpg"
-    }
-];
 
 var order = [];
 
-function addOrder(index) {
+function addOrder(products, index) {
     order.push(products[index]);
     localStorage.setItem('order', JSON.stringify(order));
     console.log(order);
@@ -61,26 +12,47 @@ function renderOrder() {
     orderContainer.empty();
     var total = 0;
     order.forEach(function(order, i){
-        orderContainer.append(`<li class="list-order"> ${order.title} - ${order.price}</li>`);
+        orderContainer.append(`<li class="list-order"> ${order.title} - $${order.price}<button class="erase">x</button></li>`);
         total = total + order.price;
+    });    
+    
+     $('#price-display').html(`$ ${total}`)
+        
+    //Botón de Cancelar y borrar todos los contenidos del Carrito de Compras
+
+    $("#cancel").click(function(){
+    orderContainer.empty();
+    order = [];
+    totalOrderPrice.empty();
+    localStorage.clear();
     });
-    $('#price-display').html(`$ ${total}`)
+    
+    //Función para borrar un elemento del carrito
+    
+    $(".erase").click(function(){
+		event.preventDefault();
+		let indice = $(event.target).attr('id')
+		$(event.target).parent().remove()
+		order.splice(indice, 1);
+		localStorage.setItem('order', JSON.stringify(order));
+	});
+
 }
 
-function renderProduct() {
+function renderProduct(products) {
         products.forEach(function(product, index) {
         productContainer.append(`
-                            <div class="col-4-12">
+                            <div class="col-4-12" id="container">
                             <article class="search-item" id="books">
                                 <div class="col-4-12">
-                                    <img src="Imagenes/${product.img}">
+                                <img src="Imagenes/${product.img}">
                                 </div>
                                 <div class="col-8-12">
-                                    <h2>${product.title}</h2>
-                                    <p class="monto">$${product.price}</p>
-                                    <div>
-                                        <input type="button" class="btn -primary" value="Ver detalle">
-                                        <input type="button" class="btn -secondary testClass"id="dos" value="Agregar al carrito" data-id="${index}">
+                                <h2>${product.title}</h2>
+                                <p class="monto">$${product.price}</p>
+                                <div>
+                                    <input type="button" class="btn -primary" value="Ver detalle">
+                                    <input type="button" class="btn -secondary testClass" id="dos" value="Agregar al carrito" data-id="${index}">
                                     </div>
                                 </div>
                             </article>
@@ -90,17 +62,32 @@ function renderProduct() {
     
     $(".testClass").click(function(event){ 
         var indexSelection = $(event.target).data("id");
-     addOrder(indexSelection);    
+     addOrder(products, indexSelection);    
     });  
-
-
+    
     
 }
 
 $(document).ready(() => {
+    //Ajax 
+    
+    $.ajax({
+        method: 'GET',
+        dataType: 'json',
+        url: 'info.json'
+    }).done(function(info){
+        renderProduct(info);
+    }).fail(function(){
+        console.log('error');
+    
+    });
+
+    
+//Variables 
+    
     productContainer = $("#products-container");
     orderContainer = $("#orders");
-    renderProduct();
+    totalOrderPrice = $("#price-display");
         
     buyProducts = $('#buyOrder');
     buyProducts.click(function(event){
@@ -112,7 +99,7 @@ $(document).ready(() => {
     
   $("#search-box-input").on("keyup", function() {
     var value = $(this).val().toLowerCase();
-    $("#products-container #books").filter(function() {
+    $("#products-container #container").filter(function() {
       $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1);
     });
   });
