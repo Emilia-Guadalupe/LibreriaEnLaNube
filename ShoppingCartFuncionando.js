@@ -31,13 +31,15 @@ function renderOrder() {
     
     $(".erase").click(function(){
 		event.preventDefault();
-		let indice = $(event.target).attr('id')
+		var indice = $(event.target).attr('id')
 		$(event.target).parent().remove()
 		order.splice(indice, 1);
 		localStorage.setItem('order', JSON.stringify(order));
+        renderOrder()
 	});
 
 }
+
 
 function renderProduct(products) {
         products.forEach(function(product, index) {
