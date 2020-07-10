@@ -4,7 +4,9 @@
         "title": "The Lost Hero",
         "author": "Rick Riordan",
         "price": 7840,
-        "img": "The_Lost_Hero.jpg"
+        "img": "The_Lost_Hero.jpg",
+        "quantity": "Contiene cinco libros",
+        "publisher": "Disney-Hyperion"
     },
     
     {
@@ -12,7 +14,9 @@
         "title": "Mistborn Trilogy",
         "author": "Brandon Sanderson",
         "price": 5080,
-        "img": "Mistborn_Trilogy.jpg"
+        "img": "Mistborn_Trilogy.jpg",
+        "quantity": "Contiene tres libros",
+        "publisher": "Tor Books"
     },
     
     {
@@ -20,7 +24,9 @@
         "title": "Harry Dresden Files",
         "author": "Jim Butcher",
         "price": 4700,
-        "img": "Storm_Front.jpg"
+        "img": "Storm_Front.jpg",
+        "quantity": "Contiene cinco libros",
+        "publisher": "Penguin Books"
     },
     
     {
@@ -28,7 +34,9 @@
         "title": "Inkheart Trilogy",
         "author": "Cornelia Funke",
         "price": 5000,
-        "img": "Inkheart.jpg"
+        "img": "Inkheart.jpg",
+        "quantity": "Contiene tres libros",
+        "publisher": "Scholastic"
     },
     
     {
@@ -36,7 +44,9 @@
         "title": "Six of Crows",
         "author": "Leigh Bardugo",
         "price": 6000,
-        "img": "Six_of_Crows.jpg"
+        "img": "Six_of_Crows.jpg",
+        "quantity": "Contiene dos libros",
+        "publisher": "Henry Holt and Co"
     },
     
     {
@@ -44,6 +54,8 @@
         "title": "The Raven Cycle",
         "author": "Maggie Stiefvater",
         "price": 6000,
-        "img": "The_Raven_Cycle.jpg"
+        "img": "The_Raven_Cycle.jpg",
+        "quantity": "Contiene cinco libros",
+        "publisher": "Scholastic"
     }
 ]
