@@ -53,7 +53,7 @@ function renderProduct(products) {
                                 <h2>${product.title}</h2>
                                 <p class="monto">$${product.price}</p>
                                 <div>
-                                    <input type="button" class="btn -primary" value="Ver detalle">
+                                    <input type="button" class="btn -primary -details" value="Ver detalle" data-id="${index}">
                                     <input type="button" class="btn -secondary testClass" id="dos" value="Agregar al carrito" data-id="${index}">
                                     </div>
                                 </div>
@@ -65,10 +65,36 @@ function renderProduct(products) {
     $(".testClass").click(function(event){ 
         var indexSelection = $(event.target).data("id");
      addOrder(products, indexSelection);    
-    });  
+    });
     
+    //Botón Ver Detalles 
+    
+    $(".-details").click(function(event){ 
+        event.preventDefault();
+        var results = [];
+		var selection = $(event.target).data("id");
+        $('#details-container').toggle(renderDetails(products, selection));
+    });
+    
+    //Función para Mostrar Detalles
+    
+    function renderDetails(products, index){
+        detailsContainer.empty();   
+        products.forEach(function(product, i) {
+            if (product.id == index) {
+                detailsContainer.append(
+                    `<div class="col-8-12">
+                <h2>${product.title}</h2>
+                <p class="autor">Autor/a: ${product.author}</p>
+                <p class="editorial">Editorial: ${product.publisher}</p>
+                <p class="cantidad">${product.quantity}</p>`
+                )
+            }
+        })
+    }
     
 }
+
 
 $(document).ready(() => {
     //Ajax 
@@ -90,6 +116,7 @@ $(document).ready(() => {
     productContainer = $("#products-container");
     orderContainer = $("#orders");
     totalOrderPrice = $("#price-display");
+    detailsContainer = $("#details-container")
         
     buyProducts = $('#buyOrder');
     buyProducts.click(function(event){
