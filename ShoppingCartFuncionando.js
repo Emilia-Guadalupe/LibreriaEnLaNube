@@ -49,8 +49,8 @@ function renderProduct(products) {
                                 <div class="col-4-12">
                                 <img src="Imagenes/${product.img}">
                                 </div>
-                                <div class="col-8-12">
-                                <h2>${product.title}</h2>
+                                <div class="col-8-12" id="text">
+                                <h2 class="titulo-libro">${product.title}</h2>
                                 <p class="monto">$${product.price}</p>
                                 <div>
                                     <input type="button" class="btn -primary -details" value="Ver detalle" data-id="${index}">
@@ -82,8 +82,10 @@ function renderProduct(products) {
         detailsContainer.empty();   
         products.forEach(function(product, i) {
             if (product.id == index) {
-                detailsContainer.append(
-                    `<div class="col-8-12">
+                detailsContainer.append(`<div class="col-8-12">
+                <img src="Imagenes/${product.img}">
+                </div>
+                <div class="col-8-12">
                 <h2>${product.title}</h2>
                 <p class="autor">Autor/a: ${product.author}</p>
                 <p class="editorial">Editorial: ${product.publisher}</p>
