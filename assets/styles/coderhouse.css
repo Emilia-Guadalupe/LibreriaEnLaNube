@@ -51,9 +51,14 @@ article.search-item h2 {
     font-weight: bold;
 }
 
+.titulo-libro {
+    color: black;
+}
+
 img {
-    width: 90px; 
+    width: 90px;
     margin-top: 15px;
+    margin-left: 10px; 
 }
 
 .monto {
@@ -76,7 +81,7 @@ img {
     background-color: white;
     color: black;
     border: 1px solid #000000;
-    border-radius: 10px; 
+    border-radius: 10px;
 }
 
 .-primary:hover {
@@ -89,6 +94,14 @@ img {
     background-color: mediumseagreen;
 }
 
+#books {
+    border: none;   
+}
+
+#text {
+    text-align: center; 
+}
+
 ul li {
     padding-bottom: 5px; 
 }
@@ -96,10 +109,14 @@ ul li {
 .list-order {
     padding-bottom: 10px; 
     list-style: decimal;
+    margin-left: 0px; 
+    padding-left: 0px;
 }
 
 .erase {
     margin-left: 4px;
+    font-size: 10px;
+    padding: 3px; 
 }
 
 #envio {
@@ -116,9 +133,15 @@ ul li {
     border: 1px solid;
 }
 
+#details-container {
+    margin-bottom: 20px; 
+}
+
 footer {
-    background: white;
-    padding: 20px 0;
-    margin: 36px 0 0 0;
-    font-size: 1em;
+    background-color: dodgerblue;
+    color: whitesmoke;
+    padding: 10px 0;
+    margin: 70px 0 0 0;
+    font-size: 11px;
+    border-top: 1px solid darkgoldenrod;  
 }
